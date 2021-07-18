@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
+import pl.pilichm.quizapp.Constants.CSV_FILENAME
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
@@ -23,12 +24,12 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         mUserName = intent.getStringExtra(Constants.USER_NAME)
 
-        mQuestionsList = Constants.getQuestions()
+        mQuestionsList = Constants.getQuestions(assets.open(CSV_FILENAME))
         setQuestion()
     }
 
     private fun setQuestion(){
-        val questionsList = Constants.getQuestions()
+        val questionsList = Constants.getQuestions(assets.open("questions.csv"))
 
         tv_option_one.setOnClickListener(this)
         tv_option_two.setOnClickListener(this)
