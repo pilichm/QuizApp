@@ -1,10 +1,10 @@
 package pl.pilichm.quizapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,14 +17,10 @@ class ResultActivity : AppCompatActivity() {
         val totalQuestions = intent.getStringExtra(Constants.TOTAL_QUESTIONS)
         val correctAnswers = intent.getStringExtra(Constants.CORRECT_ANSWERS)
 
-        val tvName = findViewById<TextView>(R.id.tv_name)
-        val tvScore = findViewById<TextView>(R.id.tv_score)
-        val btnFinish = findViewById<TextView>(R.id.btn_finish)
+        tv_name.text = userName
+        tv_score.text = "You're score is $correctAnswers out of $totalQuestions"
 
-        tvName.text = userName
-        tvScore.text = "You're score is $correctAnswers out of $totalQuestions"
-
-        btnFinish.setOnClickListener{
+        btn_finish.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
         }
 

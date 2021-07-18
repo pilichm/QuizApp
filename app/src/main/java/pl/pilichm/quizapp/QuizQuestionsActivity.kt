@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_quiz_questions.*
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
@@ -28,52 +29,39 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setQuestion(){
         val questionsList = Constants.getQuestions()
-        val progressBar = findViewById<ProgressBar>(R.id.pb_progress_bar)
-        val progressText = findViewById<TextView>(R.id.tv_progress)
-        val tvQuestion = findViewById<TextView>(R.id.tv_question_id)
-        val ivImage = findViewById<ImageView>(R.id.iv_image)
-        val tvAnswerOne = findViewById<TextView>(R.id.tv_option_one)
-        val tvAnswerTwo = findViewById<TextView>(R.id.tv_option_two)
-        val tvAnswerThree = findViewById<TextView>(R.id.tv_option_three)
-        val tvAnswerFour = findViewById<TextView>(R.id.tv_option_four)
-        val btnSubmit = findViewById<Button>(R.id.btn_submit)
 
-        tvAnswerOne.setOnClickListener(this)
-        tvAnswerTwo.setOnClickListener(this)
-        tvAnswerThree.setOnClickListener(this)
-        tvAnswerFour.setOnClickListener(this)
-        btnSubmit.setOnClickListener(this)
+        tv_option_one.setOnClickListener(this)
+        tv_option_two.setOnClickListener(this)
+        tv_option_three.setOnClickListener(this)
+        tv_option_four.setOnClickListener(this)
+        btn_submit.setOnClickListener(this)
 
         val question = mQuestionsList!![mCurrentPosition-1]
 
         defaultOptionsView()
 
         if (mCurrentPosition == questionsList!!.size){
-            btnSubmit.text = "FINISH"
+            btn_submit.text = "FINISH"
         } else{
-            btnSubmit.text = "SUBMIT"
+            btn_submit.text = "SUBMIT"
         }
 
-        progressBar.progress = mCurrentPosition
-        progressText.text = "$mCurrentPosition/${questionsList.size}"
-        tvQuestion.text = question.question
-        ivImage.setImageResource(question.image)
-        tvAnswerOne.text = question.optionOne
-        tvAnswerTwo.text = question.optionTwo
-        tvAnswerThree.text = question.optionThree
-        tvAnswerFour.text = question.optionFour
+        pb_progress_bar.progress = mCurrentPosition
+        tv_progress.text = "$mCurrentPosition/${questionsList.size}"
+        tv_question_id.text = question.question
+        iv_image.setImageResource(question.image)
+        tv_option_one.text = question.optionOne
+        tv_option_two.text = question.optionTwo
+        tv_option_three.text = question.optionThree
+        tv_option_four.text = question.optionFour
     }
 
     private fun defaultOptionsView(){
-        val tvAnswerOne = findViewById<TextView>(R.id.tv_option_one)
-        val tvAnswerTwo = findViewById<TextView>(R.id.tv_option_two)
-        val tvAnswerThree = findViewById<TextView>(R.id.tv_option_three)
-        val tvAnswerFour = findViewById<TextView>(R.id.tv_option_four)
         val options = java.util.ArrayList<TextView>()
-        options.add(0, tvAnswerOne)
-        options.add(1, tvAnswerTwo)
-        options.add(2, tvAnswerThree)
-        options.add(3, tvAnswerFour)
+        options.add(0, tv_option_one)
+        options.add(1, tv_option_two)
+        options.add(2, tv_option_three)
+        options.add(3, tv_option_four)
 
         for (option in options){
             option.setTextColor(Color.parseColor("#7A8089"))
@@ -136,15 +124,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun answerView(answer: Int, drawableView: Int){
-        val tvAnswerOne = findViewById<TextView>(R.id.tv_option_one)
-        val tvAnswerTwo = findViewById<TextView>(R.id.tv_option_two)
-        val tvAnswerThree = findViewById<TextView>(R.id.tv_option_three)
-        val tvAnswerFour = findViewById<TextView>(R.id.tv_option_four)
         when (answer){
-            1 -> tvAnswerOne.background = ContextCompat.getDrawable(this, drawableView)
-            2 -> tvAnswerTwo.background = ContextCompat.getDrawable(this, drawableView)
-            3 -> tvAnswerThree.background = ContextCompat.getDrawable(this, drawableView)
-            4 -> tvAnswerFour.background = ContextCompat.getDrawable(this, drawableView)
+            1 -> tv_option_one.background = ContextCompat.getDrawable(this, drawableView)
+            2 -> tv_option_two.background = ContextCompat.getDrawable(this, drawableView)
+            3 -> tv_option_three.background = ContextCompat.getDrawable(this, drawableView)
+            4 -> tv_option_four.background = ContextCompat.getDrawable(this, drawableView)
         }
     }
 
