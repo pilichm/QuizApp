@@ -24,5 +24,11 @@ class ResultActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+        btn_results_to_podium.setOnClickListener {
+            val intent = Intent(this, LeaderBoardActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 }

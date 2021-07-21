@@ -21,7 +21,7 @@
             android:gravity="center"
             android:textColor="#363A43"
             android:textSize="22sp"
-            android:text="What country does this flag belong to?"/>
+            android:text="@string/what_country_does_this_flag_belong_to"/>
 
         <ImageView
             android:id="@+id/iv_image"
@@ -51,7 +51,7 @@
             <TextView
                 android:id="@+id/tv_progress"
                 android:layout_width="wrap_content"
-                android:text="0/10"
+                android:text="@string/_0_10"
                 android:padding="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
@@ -68,7 +68,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            android:text="Apple"
+            android:text="@string/apple"
             android:gravity="center"
             android:background="@drawable/default_option_border_bg"/>
 
@@ -80,7 +80,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            android:text="Apple"
+            android:text="@string/apple"
             android:gravity="center"
             android:background="@drawable/default_option_border_bg"/>
 
@@ -92,7 +92,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            android:text="Apple"
+            android:text="@string/apple"
             android:gravity="center"
             android:background="@drawable/default_option_border_bg"/>
 
@@ -104,7 +104,7 @@
             android:padding="15dp"
             android:textColor="#7A8089"
             android:textSize="18sp"
-            android:text="Apple"
+            android:text="@string/apple"
             android:gravity="center"
             android:background="@drawable/default_option_border_bg"/>
 
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/design_default_color_primary"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"/>

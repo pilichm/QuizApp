@@ -25,5 +25,11 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        btn_show_leader_board.setOnClickListener {
+            val intent = Intent(this, LeaderBoardActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
