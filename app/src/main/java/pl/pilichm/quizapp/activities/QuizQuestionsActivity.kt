@@ -1,4 +1,4 @@
-package pl.pilichm.quizapp
+package pl.pilichm.quizapp.activities
 
 import android.content.Intent
 import android.graphics.Color
@@ -9,7 +9,10 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
+import pl.pilichm.quizapp.Constants
 import pl.pilichm.quizapp.Constants.CSV_FILENAME
+import pl.pilichm.quizapp.Question
+import pl.pilichm.quizapp.R
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
@@ -68,7 +71,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             option.setTextColor(Color.parseColor("#7A8089"))
             option.typeface = Typeface.DEFAULT
             option.background = ContextCompat.getDrawable(
-                this, R.drawable.default_option_border_bg)
+                this, R.drawable.default_option_border_bg
+            )
         }
 
     }
@@ -139,7 +143,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv.setTextColor(Color.parseColor("#363A43"))
         tv.setTypeface(tv.typeface, Typeface.BOLD)
         tv.background = ContextCompat.getDrawable(
-            this, R.drawable.selected_option_border)
+            this, R.drawable.selected_option_border
+        )
     }
 
 

@@ -11,19 +11,19 @@
         android:theme="@style/Theme.QuizApp">
 
         <activity
-            android:name=".LeaderBoardActivity"/>
+            android:name=".activities.LeaderBoardActivity"/>
 
         <activity
-            android:name=".ResultActivity"
+            android:name=".activities.ResultActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
 
 
         <activity
-            android:name=".QuizQuestionsActivity"
+            android:name=".activities.QuizQuestionsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustResize">

@@ -14,7 +14,7 @@ class UserScoreAdapter(context: Context, userScores: ArrayList<UserScore>):
         val currentUserScore = getItem(position)
         val currentView = convertView ?: LayoutInflater.from(context).inflate(R.layout.leader_board_element, parent, false);
 
-        val tvOrderNumber = convertView?.findViewById<TextView>(R.id.tv_question_id)
+        val tvOrderNumber = convertView?.findViewById<TextView>(R.id.tv_order_number)
         val tvUserName = convertView?.findViewById<TextView>(R.id.tv_user_name)
         val tvUserScore = convertView?.findViewById<TextView>(R.id.tv_user_score)
 

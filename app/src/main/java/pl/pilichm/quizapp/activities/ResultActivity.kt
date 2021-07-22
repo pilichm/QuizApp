@@ -1,10 +1,14 @@
-package pl.pilichm.quizapp
+package pl.pilichm.quizapp.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_result.*
+import pl.pilichm.quizapp.Constants
+import pl.pilichm.quizapp.DatabaseHandler
+import pl.pilichm.quizapp.R
+import pl.pilichm.quizapp.UserScore
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,5 +34,10 @@ class ResultActivity : AppCompatActivity() {
             finish()
         }
 
+        val dbHandler = DatabaseHandler.getDatabaseHandler(this)
+
+        if (userName!=null&&correctAnswers!=null){
+            dbHandler.saveResult(UserScore(0, userName, correctAnswers.toInt()))
+        }
     }
 }
