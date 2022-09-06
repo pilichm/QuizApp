@@ -4,16 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_result.*
 import pl.pilichm.quizapp.Constants
 import pl.pilichm.quizapp.DatabaseHandler
-import pl.pilichm.quizapp.R
 import pl.pilichm.quizapp.UserScore
+import pl.pilichm.quizapp.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityResultBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
@@ -21,14 +23,14 @@ class ResultActivity : AppCompatActivity() {
         val totalQuestions = intent.getStringExtra(Constants.TOTAL_QUESTIONS)
         val correctAnswers = intent.getStringExtra(Constants.CORRECT_ANSWERS)
 
-        tv_name.text = userName
-        tv_score.text = "You're score is $correctAnswers out of $totalQuestions"
+        binding.tvName.text = userName
+        binding.tvScore.text = "You're score is $correctAnswers out of $totalQuestions"
 
-        btn_finish.setOnClickListener{
+        binding.btnFinish.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-        btn_results_to_podium.setOnClickListener {
+        binding.btnResultsToPodium.setOnClickListener {
             val intent = Intent(this, LeaderBoardActivity::class.java)
             startActivity(intent)
             finish()

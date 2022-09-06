@@ -1,19 +1,21 @@
 package pl.pilichm.quizapp.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_leader_board.*
+import androidx.appcompat.app.AppCompatActivity
 import pl.pilichm.quizapp.DatabaseHandler
-import pl.pilichm.quizapp.R
 import pl.pilichm.quizapp.UserScoreAdapter
+import pl.pilichm.quizapp.databinding.ActivityLeaderBoardBinding
 
 class LeaderBoardActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLeaderBoardBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_leader_board)
+        binding = ActivityLeaderBoardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn_return_to_start.setOnClickListener {
+        binding.btnReturnToStart.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -22,6 +24,6 @@ class LeaderBoardActivity : AppCompatActivity() {
         val dbHandler = DatabaseHandler.getDatabaseHandler(this)
 
         val adapter = UserScoreAdapter(this, dbHandler.getTopScores())
-        lv_user_scores.adapter = adapter
+        binding.lvUserScores.adapter = adapter
     }
 }

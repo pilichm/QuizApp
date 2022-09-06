@@ -8,13 +8,14 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_quiz_questions.*
 import pl.pilichm.quizapp.Constants
 import pl.pilichm.quizapp.Constants.CSV_FILENAME
 import pl.pilichm.quizapp.Question
 import pl.pilichm.quizapp.R
+import pl.pilichm.quizapp.databinding.ActivityQuizQuestionsBinding
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding: ActivityQuizQuestionsBinding
     private var mCurrentPosition: Int = 1
     private var mQuestionsList: ArrayList<Question>? = null
     private var mSelectedOptionPosition = 0
@@ -23,7 +24,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quiz_questions)
+        binding = ActivityQuizQuestionsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         mUserName = intent.getStringExtra(Constants.USER_NAME)
 
@@ -34,38 +36,38 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private fun setQuestion(){
         val questionsList = Constants.getQuestions(assets.open("questions.csv"))
 
-        tv_option_one.setOnClickListener(this)
-        tv_option_two.setOnClickListener(this)
-        tv_option_three.setOnClickListener(this)
-        tv_option_four.setOnClickListener(this)
-        btn_submit.setOnClickListener(this)
+        binding.tvOptionOne.setOnClickListener(this)
+        binding.tvOptionTwo.setOnClickListener(this)
+        binding.tvOptionThree.setOnClickListener(this)
+        binding.tvOptionFour.setOnClickListener(this)
+        binding.btnSubmit.setOnClickListener(this)
 
         val question = mQuestionsList!![mCurrentPosition-1]
 
         defaultOptionsView()
 
         if (mCurrentPosition == questionsList!!.size){
-            btn_submit.text = "FINISH"
+            binding.btnSubmit.text = "FINISH"
         } else{
-            btn_submit.text = "SUBMIT"
+            binding.btnSubmit.text = "SUBMIT"
         }
 
-        pb_progress_bar.progress = mCurrentPosition
-        tv_progress.text = "$mCurrentPosition/${questionsList.size}"
-        tv_question_id.text = question.question
-        iv_image.setImageResource(question.image)
-        tv_option_one.text = question.optionOne
-        tv_option_two.text = question.optionTwo
-        tv_option_three.text = question.optionThree
-        tv_option_four.text = question.optionFour
+        binding.pbProgressBar.progress = mCurrentPosition
+        binding.tvProgress.text = "$mCurrentPosition/${questionsList.size}"
+        binding.tvQuestionId.text = question.question
+        binding.ivImage.setImageResource(question.image)
+        binding.tvOptionOne.text = question.optionOne
+        binding.tvOptionTwo.text = question.optionTwo
+        binding.tvOptionThree.text = question.optionThree
+        binding.tvOptionFour.text = question.optionFour
     }
 
     private fun defaultOptionsView(){
         val options = java.util.ArrayList<TextView>()
-        options.add(0, tv_option_one)
-        options.add(1, tv_option_two)
-        options.add(2, tv_option_three)
-        options.add(3, tv_option_four)
+        options.add(0, binding.tvOptionOne)
+        options.add(1, binding.tvOptionTwo)
+        options.add(2, binding.tvOptionThree)
+        options.add(3, binding.tvOptionFour)
 
         for (option in options){
             option.setTextColor(Color.parseColor("#7A8089"))
@@ -130,10 +132,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun answerView(answer: Int, drawableView: Int){
         when (answer){
-            1 -> tv_option_one.background = ContextCompat.getDrawable(this, drawableView)
-            2 -> tv_option_two.background = ContextCompat.getDrawable(this, drawableView)
-            3 -> tv_option_three.background = ContextCompat.getDrawable(this, drawableView)
-            4 -> tv_option_four.background = ContextCompat.getDrawable(this, drawableView)
+            1 -> binding.tvOptionOne.background = ContextCompat.getDrawable(this, drawableView)
+            2 -> binding.tvOptionTwo.background = ContextCompat.getDrawable(this, drawableView)
+            3 -> binding.tvOptionThree.background = ContextCompat.getDrawable(this, drawableView)
+            4 -> binding.tvOptionFour.background = ContextCompat.getDrawable(this, drawableView)
         }
     }
 
@@ -146,6 +148,4 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             this, R.drawable.selected_option_border
         )
     }
-
-
 }
